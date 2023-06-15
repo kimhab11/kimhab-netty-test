@@ -1,12 +1,12 @@
-package server;
+package ex1.server;
 
+import ex1.Model.RequestData;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
-import server.Model.RequestData;
-import server.Model.ResponseData;
+import ex1.Model.ResponseData;
 
 public class SimpleProcessingHandler
         extends ChannelInboundHandlerAdapter {

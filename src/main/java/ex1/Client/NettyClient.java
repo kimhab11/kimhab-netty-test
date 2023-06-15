@@ -1,4 +1,4 @@
-package Client;
+package ex1.Client;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;

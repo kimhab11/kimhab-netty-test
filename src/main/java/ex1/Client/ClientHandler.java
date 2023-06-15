@@ -1,10 +1,10 @@
-package Client;
+package ex1.Client;
 
+import ex1.Model.RequestData;
+import ex1.Model.ResponseData;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
-import server.Model.RequestData;
-import server.Model.ResponseData;
 
 public class ClientHandler extends ChannelInboundHandlerAdapter {
 

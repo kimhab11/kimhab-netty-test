@@ -1,9 +1,9 @@
-package Client;
+package ex1.Client;
 
+import ex1.Model.RequestData;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToByteEncoder;
-import server.Model.RequestData;
 
 import java.nio.charset.Charset;
 

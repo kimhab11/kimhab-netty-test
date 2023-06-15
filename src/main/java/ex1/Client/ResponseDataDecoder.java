@@ -1,9 +1,9 @@
-package Client;
+package ex1.Client;
 
+import ex1.Model.ResponseData;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ReplayingDecoder;
-import server.Model.ResponseData;
 
 import java.util.List;
 

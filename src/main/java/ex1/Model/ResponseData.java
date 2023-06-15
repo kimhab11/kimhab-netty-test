@@ -1,4 +1,4 @@
-package server.Model;
+package ex1.Model;
 
 import lombok.Data;
 

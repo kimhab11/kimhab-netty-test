@@ -1,9 +1,9 @@
-package server;
+package ex1.server;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToByteEncoder;
-import server.Model.ResponseData;
+import ex1.Model.ResponseData;
 
 public class ResponseDataEncoder
         extends MessageToByteEncoder<ResponseData> {
