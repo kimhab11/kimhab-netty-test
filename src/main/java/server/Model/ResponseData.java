@@ -1,4 +1,4 @@
-package server;
+package server.Model;
 
 import lombok.Data;
 
