@@ -4,12 +4,18 @@ import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
 import io.netty.handler.codec.MessageToByteEncoder;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
+@Data
+@AllArgsConstructor
 public class ChatMessage {
-    private final String message;
+    private String clientId;
+    private String message;
 
     public ChatMessage(String message) {
         this.message = message;

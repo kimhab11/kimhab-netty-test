@@ -11,10 +11,12 @@ import java.io.InputStreamReader;
 public class ChatClient {
     private final String host;
     private final int port;
+    private int clientPort;
 
-    public ChatClient(String host, int port) {
+    public ChatClient(String host, int port, int clientPort) {
         this.host = host;
         this.port = port;
+        this.clientPort = clientPort;
     }
 
     public void run() throws Exception {
@@ -35,7 +37,7 @@ public class ChatClient {
                     });
 
             ChannelFuture future = bootstrap.connect(host, port).sync();
-            System.out.println("Connected to chat server at " + host + ":" + port);
+            System.out.println("Connected "+" to chat server at " + host + ":" + port);
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
@@ -58,6 +60,7 @@ public class ChatClient {
     private class ChatClientHandler extends SimpleChannelInboundHandler<ChatMessage> {
         @Override
         protected void channelRead0(ChannelHandlerContext ctx, ChatMessage msg) {
+            Channel channel = ctx.channel();
             System.out.println(msg);
         }
 
@@ -67,10 +70,24 @@ public class ChatClient {
             cause.printStackTrace();
             ctx.close();
         }
+
+//    private class ChatClientHandler extends SimpleChannelInboundHandler<ChatMessage> {
+//        @Override
+//        protected void channelRead0(ChannelHandlerContext ctx, ChatMessage msg) {
+//            System.out.println(msg);
+//        }
+//
+//        @Override
+//        public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
+//            System.err.println("Exception caught on client");
+//            cause.printStackTrace();
+//            ctx.close();
+//        }
+//    }
     }
 
     public static void main(String[] args) throws Exception {
-        ChatClient client = new ChatClient("localhost", 8080);
+        ChatClient client = new ChatClient("localhost", 8080, 8999);
         client.run();
     }
 }
