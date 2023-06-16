@@ -24,8 +24,11 @@ import io.netty.handler.ssl.SslHandler;
 import io.netty.util.concurrent.Future;
 import io.netty.util.concurrent.GenericFutureListener;
 import io.netty.util.concurrent.GlobalEventExecutor;
+import lombok.extern.slf4j.Slf4j;
+import lombok.extern.slf4j.XSlf4j;
 
 import java.net.InetAddress;
+import java.util.logging.Logger;
 
 /**
  * Handles a server-side channel.
@@ -45,11 +48,12 @@ public class ChatServerHandler extends SimpleChannelInboundHandler<String> {
                         ctx.writeAndFlush(
                                 "Welcome to " + InetAddress.getLocalHost().getHostName() + " secure chat service!\n");
                         ctx.writeAndFlush(
-                                "Your session is protected by " +
+                                "Your session ["+ctx.channel().remoteAddress()+"] is protected by " +
                                         ctx.pipeline().get(SslHandler.class).engine().getSession().getCipherSuite() +
                                         " cipher suite.\n");
 
                         channels.add(ctx.channel());
+                        System.out.println("SERVER JOIN "+ctx.channel().remoteAddress());
                     }
                 });
     }

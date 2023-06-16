@@ -29,7 +29,7 @@ import io.netty.handler.ssl.util.SelfSignedCertificate;
  */
 public final class ChatServer {
 
-    static final int PORT = Integer.parseInt(System.getProperty("port", "8992"));
+    static final int PORT = Integer.parseInt(System.getProperty("port", "8080"));
 
     public static void main(String[] args) throws Exception {
         SelfSignedCertificate ssc = new SelfSignedCertificate();
@@ -43,7 +43,7 @@ public final class ChatServer {
             b.group(bossGroup, workerGroup)
                     .channel(NioServerSocketChannel.class)
                     .handler(new LoggingHandler(LogLevel.INFO))
-                    .childHandler(new io.netty.example.securechat.ChatServerInitializer(sslCtx));
+                    .childHandler(new ChatServerInitializer(sslCtx));
 
             b.bind(PORT).sync().channel().closeFuture().sync();
         } finally {

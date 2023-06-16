@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
-package io.netty.example.securechat;
+package ex3_chat;
 
 import ex3_chat.ChatServerHandler;
 import io.netty.channel.ChannelInitializer;
