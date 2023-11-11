@@ -1,4 +1,4 @@
-package ex3_chat;
+package secureChat;
 
 /*
  * Copyright 2012 The Netty Project
@@ -19,19 +19,32 @@ package ex3_chat;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
+@Component
+@Slf4j
 /**
  */
 public class ChatClientHandler extends SimpleChannelInboundHandler<String> {
 
     @Override
     public void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
+        log.info("channelRead0");
         System.err.println(msg);
+    }
+
+    @Override
+    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        super.channelActive(ctx);
+
+        System.out.println("Connected to{}" +ctx.channel().remoteAddress());
     }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
         cause.printStackTrace();
+        log.info("exceptionCaught {}",cause.getMessage());
         ctx.close();
     }
 }

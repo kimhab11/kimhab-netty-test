@@ -1,5 +1,6 @@
 package ex1.Client;
 
+import ex1.Model.RequestDataEncoder;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;

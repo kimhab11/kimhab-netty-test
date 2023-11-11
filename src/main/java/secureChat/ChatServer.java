@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
-package ex3_chat;
+package secureChat;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.EventLoopGroup;
@@ -24,12 +24,15 @@ import io.netty.handler.logging.LoggingHandler;
 import io.netty.handler.ssl.SslContext;
 import io.netty.handler.ssl.SslContextBuilder;
 import io.netty.handler.ssl.util.SelfSignedCertificate;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  */
-public final class ChatServer {
 
-    static final int PORT = Integer.parseInt(System.getProperty("port", "8080"));
+@Slf4j
+public class ChatServer {
+
+    static final int PORT = Integer.parseInt(System.getProperty("port", "802"));
 
     public static void main(String[] args) throws Exception {
         SelfSignedCertificate ssc = new SelfSignedCertificate();
@@ -46,6 +49,7 @@ public final class ChatServer {
                     .childHandler(new ChatServerInitializer(sslCtx));
 
             b.bind(PORT).sync().channel().closeFuture().sync();
+            log.warn("Server Start");
         } finally {
             bossGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();

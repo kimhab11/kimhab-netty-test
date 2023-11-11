@@ -1,4 +1,4 @@
-package ex1.server;
+package ex1.Model;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;

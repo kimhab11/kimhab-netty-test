@@ -1,4 +1,4 @@
-package ex1.server;
+package ex1.Model;
 
 import ex1.Model.RequestData;
 import io.netty.buffer.ByteBuf;

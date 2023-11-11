@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
-package ex3_chat;
+package secureChat;
 
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
@@ -24,15 +24,14 @@ import io.netty.handler.ssl.SslHandler;
 import io.netty.util.concurrent.Future;
 import io.netty.util.concurrent.GenericFutureListener;
 import io.netty.util.concurrent.GlobalEventExecutor;
-import lombok.extern.slf4j.Slf4j;
-import lombok.extern.slf4j.XSlf4j;
+import org.springframework.stereotype.Component;
 
 import java.net.InetAddress;
-import java.util.logging.Logger;
 
 /**
  * Handles a server-side channel.
  */
+@Component
 public class ChatServerHandler extends SimpleChannelInboundHandler<String> {
 
     static final ChannelGroup channels = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
@@ -53,7 +52,8 @@ public class ChatServerHandler extends SimpleChannelInboundHandler<String> {
                                         " cipher suite.\n");
 
                         channels.add(ctx.channel());
-                        System.out.println("SERVER JOIN "+ctx.channel().remoteAddress());
+
+                        System.out.println("CLIENT JOIN "+ctx.channel().remoteAddress());
                     }
                 });
     }
@@ -63,7 +63,7 @@ public class ChatServerHandler extends SimpleChannelInboundHandler<String> {
         // Send the received message to all channels but the current one.
         for (Channel c: channels) {
             if (c != ctx.channel()) {
-                c.writeAndFlush("[" + ctx.channel().remoteAddress() + "] " + msg + '\n');
+                c.writeAndFlush("=> Client [" + ctx.channel().remoteAddress() + "] " + msg + '\n');
             } else {
                 c.writeAndFlush("[you] " + msg + '\n');
             }
